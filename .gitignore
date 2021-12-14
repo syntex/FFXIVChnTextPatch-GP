@@ -1,5 +1,8 @@
-/backup/*
+/.settings/
+/backup/
 /bin/
 /jre/
 /resource/text/
-
+/src_test/
+.classpath
+.project
