@@ -6,16 +6,16 @@
 			<attribute name="module" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="D:/Java/commons-codec-1.11.jar"/>
-	<classpathentry kind="lib" path="D:/Java/fluent-hc-4.5.3.jar"/>
-	<classpathentry kind="lib" path="D:/Java/gson-2.8.5.jar"/>
-	<classpathentry kind="lib" path="D:/Java/httpclient-4.5.3.jar"/>
-	<classpathentry kind="lib" path="D:/Java/httpclient-cache-4.5.3.jar"/>
-	<classpathentry kind="lib" path="D:/Java/httpcore-4.4.6.jar"/>
-	<classpathentry kind="lib" path="D:/Java/httpmime-4.5.3.jar"/>
-	<classpathentry kind="lib" path="D:/Java/jzlib-1.1.3.jar"/>
-	<classpathentry kind="lib" path="D:/Java/nlp-lang-1.7.6.jar"/>
-	<classpathentry kind="lib" path="D:/Java/commons-logging-1.2.jar"/>
-	<classpathentry kind="lib" path="D:/Java/univocity-parsers-2.9.1.jar"/>
+	<classpathentry kind="lib" path="extLib/commons-codec-1.11.jar"/>
+	<classpathentry kind="lib" path="extLib/commons-logging-1.2.jar"/>
+	<classpathentry kind="lib" path="extLib/fluent-hc-4.5.3.jar"/>
+	<classpathentry kind="lib" path="extLib/gson-2.8.5.jar"/>
+	<classpathentry kind="lib" path="extLib/httpclient-4.5.3.jar"/>
+	<classpathentry kind="lib" path="extLib/httpclient-cache-4.5.3.jar"/>
+	<classpathentry kind="lib" path="extLib/httpcore-4.4.6.jar"/>
+	<classpathentry kind="lib" path="extLib/httpmime-4.5.3.jar"/>
+	<classpathentry kind="lib" path="extLib/jzlib-1.1.3.jar"/>
+	<classpathentry kind="lib" path="extLib/nlp-lang-1.7.6.jar"/>
+	<classpathentry kind="lib" path="extLib/univocity-parsers-2.9.1.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
