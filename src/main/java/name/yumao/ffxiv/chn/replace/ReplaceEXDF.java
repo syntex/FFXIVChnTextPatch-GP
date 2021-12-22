@@ -75,7 +75,7 @@ public class ReplaceEXDF {
 		this.dlang = Config.getProperty("DLanguage");
 		// added
 		this.flang = Config.getProperty("FLanguage");
-		if (this.flang == "CSV") {
+		if (this.flang.equals("CSV")) {
 			this.csv = true;
 		} else {
 			this.csv = false;
@@ -340,6 +340,8 @@ public class ReplaceEXDF {
 												// System.out.println("\t\tCannot find listEntryIndex " + String.valueOf(listEntryIndex));
 												newFFXIVString = ArrayUtil.append(newFFXIVString,  jaBytes);
 											}
+										} else {
+											newFFXIVString = ArrayUtil.append(newFFXIVString,  jaBytes);
 										}
 										
 									} else if (Config.getConfigResource("transtable") != null && Config.getProperty("transtable", transKey) != null && Config.getProperty("transtable", transKey).length() > 0) {

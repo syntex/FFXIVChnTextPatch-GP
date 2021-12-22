@@ -20,6 +20,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.SwingConstants;
 import javax.swing.border.Border;
 import javax.swing.border.MatteBorder;
 // import name.yumao.ffxiv.chn.model.TeemoUpdateVo;
@@ -35,7 +36,7 @@ public class TextPatchPanel extends JFrame implements ActionListener {
 	
 	// private List updates;
 	private static Point origin = new Point();
-	private static String title = "本程式修改自《提莫苑|FFXIV汉化》";
+	private static String title = "PatchTool";
 	private JLabel title_lable = new JLabel(title);
 	private Dimension dimension;
 	private JButton bootButton = new JButton("快速啟動");
@@ -45,6 +46,7 @@ public class TextPatchPanel extends JFrame implements ActionListener {
 	private JPanel bodyPanel = new JPanel();
 	public JButton replaceButton = new JButton("漢化");
 	public JButton rollbackButton = new JButton("還原");
+	private JLabel menuText = new JLabel("by GPointChen",  SwingConstants.RIGHT);
 	
 	public TextPatchPanel() {
 		super(title);
@@ -147,9 +149,14 @@ public class TextPatchPanel extends JFrame implements ActionListener {
 		this.rollbackButton.setEnabled(true);
 		add(this.rollbackButton, 0);
 		
+		// this.menuText.setBounds(30, 80, 230, 60);
+		// this.menuText.setFont(new Font("Callibri", 0, 12));
+		// add(this.menuText, 0);
+		
 		setVisible(false);
 		setVisible(true);
 		
+		/*
 		try {
 			String path = Config.getProperty("GamePath");
 			if (isFFXIVFloder(path)) {
@@ -158,7 +165,6 @@ public class TextPatchPanel extends JFrame implements ActionListener {
 				EXDFUtil exdfUtil = new EXDFUtil(pathToIndex);
 				if (exdfUtil.isTransDat()) {
 					this.replaceButton.setEnabled(false);
-					/*
 					List<TeemoUpdateVo> diffFiles = UpdateUtil.diffChnFile(this.updates);
 					if (diffFiles.size() > 0 && 
 						JOptionPane.showConfirmDialog(null, "检测到新汉化版本，是否使用？", "提示", 0) == 0) {
@@ -169,10 +175,11 @@ public class TextPatchPanel extends JFrame implements ActionListener {
 						Thread replaceFileThread = new Thread((Runnable)replaceThread);
 						replaceFileThread.start();
 					} 
-					*/
+					
 				} 
 			} 
 		} catch (Exception exception) {}
+		*/
 	}
 	
 	@Override
