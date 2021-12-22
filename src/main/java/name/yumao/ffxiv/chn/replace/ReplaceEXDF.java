@@ -18,6 +18,7 @@ import java.util.regex.Pattern;
 import com.univocity.parsers.csv.CsvParser;
 import com.univocity.parsers.csv.CsvParserSettings;
 
+import name.syntex.ffxiv.resource.NPCNameMapping;
 import name.yumao.ffxiv.chn.builder.BinaryBlockBuilder;
 import name.yumao.ffxiv.chn.builder.EXDFBuilder;
 import name.yumao.ffxiv.chn.model.EXDFDataset;
@@ -58,6 +59,8 @@ public class ReplaceEXDF {
 	// flang should be CHS or JA at default.
 	private String flang;
 	private boolean csv;
+	
+	private NPCNameMapping npcMapping=new NPCNameMapping();
 	
 	public ReplaceEXDF(String pathToIndexSE, String pathToIndexCN,/* List<TeemoUpdateVo> updates,*/ PercentPanel percentPanel) {
 		// 這兩個檔案會是0a0000.win32.index
@@ -293,7 +296,7 @@ public class ReplaceEXDF {
 										// System.out.println("\t\t\t\tlist entry index: " + String.valueOf(listEntryIndex));
 										String[] rowStrings = csvDataMap.get(listEntryIndex);
 										if (rowStrings != null) {
-											String readString = rowStrings[offsetInteger];
+										    String readString = npcMapping.mapping(rowStrings[offsetInteger]);
 											String newString = new String();
 											boolean isHexString = false;
 											if (readString != null) {
