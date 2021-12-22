@@ -83,7 +83,7 @@ public class ReplaceFont {
 		// the function is copied from ReplaceEXDF
 		HashMap<Integer, SqPackIndexFolder> indexSE = (new SqPackIndex(this.pathToIndex)).resloveIndex();
 		Integer filePathCRC = Integer.valueOf(FFCRC.ComputeCRC("common/font".toLowerCase().getBytes()));
-		var rootIndexFileSE = ((SqPackIndexFolder)indexSE.get(filePathCRC)).getFiles();
+		HashMap<Integer, SqPackIndexFile> rootIndexFileSE = ((SqPackIndexFolder)indexSE.get(filePathCRC)).getFiles();
 		for (Map.Entry<Integer, SqPackIndexFile> listEntry : rootIndexFileSE.entrySet()) {
 			System.out.println("[ReplaceFont] File name: " + listEntry.getValue().getName2());
 			System.out.println("[ReplaceFont] File name: " + listEntry.getValue().toString());
