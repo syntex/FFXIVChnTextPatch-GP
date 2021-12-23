@@ -2,6 +2,7 @@
 <classpath>
 	<classpathentry kind="src" path="src/main/java"/>
 	<classpathentry kind="src" path="src_extend"/>
+	<classpathentry kind="src" path="src_test"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER">
 		<attributes>
 			<attribute name="module" value="true"/>
@@ -18,5 +19,6 @@
 	<classpathentry kind="lib" path="extLib/jzlib-1.1.3.jar"/>
 	<classpathentry kind="lib" path="extLib/nlp-lang-1.7.6.jar"/>
 	<classpathentry kind="lib" path="extLib/univocity-parsers-2.9.1.jar"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/5"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
