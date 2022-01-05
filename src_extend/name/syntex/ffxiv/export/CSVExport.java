@@ -11,11 +11,9 @@ import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
-
-import javax.management.StringValueExp;
+import java.util.TreeMap;
 
 import name.yumao.ffxiv.chn.model.EXDFDataset;
 import name.yumao.ffxiv.chn.model.EXDFEntry;
@@ -56,11 +54,13 @@ public class CSVExport
             //EXD/quest/001/ClsRog001_00101.EXH
             if (!replaceFile.toUpperCase().endsWith(".EXH"))
                 continue;
+
             //make csv path and file           
 
             String filePatch = replaceFile.substring(0, replaceFile.lastIndexOf("/"));
             String fileName = replaceFile.substring(replaceFile.lastIndexOf("/") + 1);
-
+            if (!"quest.exh".equals(fileName.toLowerCase()))
+                continue;
             // 計算檔案目錄CRC
             Integer filePatchCRC = Integer.valueOf(FFCRC.ComputeCRC(filePatch.toLowerCase().getBytes()));
             // 計算 EXH CRC
@@ -84,6 +84,70 @@ public class CSVExport
             EXHFFile exhSE = new EXHFFile(exhFileSE);
             if ((exhSE.getLangs()).length <= 0)
                 continue;
+            //先輸出一次title
+            for (EXDFPage exdfPage : exhSE.getPages())
+            {
+                Integer exdFileCRCJA = Integer.valueOf(FFCRC.ComputeCRC(fileName.replace(".EXH", "_" + String.valueOf(exdfPage.pageNum) + "_" + slang + ".EXD").toLowerCase().getBytes()));
+                // 提取對應的文本檔案
+                SqPackIndexFile exdIndexFileJA = (SqPackIndexFile) ((SqPackIndexFolder) indexSE.get(filePatchCRC)).getFiles().get(exdFileCRCJA);
+                byte[] exdFileJA = null;
+                try
+                {
+                    exdFileJA = extractFile(pathToIndexSE, exdIndexFileJA.getOffset());
+                } catch (Exception jaEXDFileException)
+                {
+                    continue;
+                }
+                // added 檢查日文檔案是否損毀
+                if (exdFileJA == null)
+                {
+                    System.out.println("      [ERROR] exdFileJA null detected!");
+                    System.out.println("      [ERROR] exdIndexFileJA.getOffset(): " + String.valueOf(exdIndexFileJA.getOffset()));
+                    continue;
+                }
+                // 解壓文本檔案並提取內容
+                EXDFFile ja_exd = new EXDFFile(exdFileJA);
+                TreeMap<Integer, byte[]> jaExdList = new TreeMap<Integer, byte[]>();
+                jaExdList.putAll(ja_exd.getEntrys());
+                for (Map.Entry<Integer, byte[]> listEntry : jaExdList.entrySet())
+                {
+                    EXDFEntry exdfEntryJA = new EXDFEntry(listEntry.getValue(), exhSE.getDatasetChunkSize());
+                    LERandomBytes chunk = new LERandomBytes(new byte[(exdfEntryJA.getChunk()).length], true, false);
+                    chunk.write(exdfEntryJA.getChunk());
+
+                    int index = 0;
+                    StringBuilder sbKey = new StringBuilder();
+                    StringBuilder sbOffset = new StringBuilder();
+                    StringBuilder sbType = new StringBuilder();
+
+                    sbKey.append("key,");
+                    sbType.append("#,");
+                    sbOffset.append("offset,");
+                    for (EXDFDataset exdfDatasetSE : exhSE.getDatasets())
+                    {
+                        sbKey.append(String.valueOf(index++)).append(",");
+                        sbOffset.append(exdfDatasetSE.offset).append(",");
+                        sbType.append(exdfDatasetSE.type).append(",");
+                    }
+
+                    if (sbKey.length() > 0)
+                        sbKey.deleteCharAt(sbKey.length() - 1);
+                    if (sbOffset.length() > 0)
+                        sbOffset.deleteCharAt(sbOffset.length() - 1);
+                    if (sbType.length() > 0)
+                        sbType.deleteCharAt(sbType.length() - 1);
+                    bwCSV.write(sbKey.toString());
+                    bwCSV.newLine();
+                    bwCSV.write(sbType.toString());
+                    bwCSV.newLine();
+                    bwCSV.write(sbOffset.toString());
+                    bwCSV.newLine();
+                    bwCSV.write(sbType.toString());
+                    bwCSV.newLine();
+                    break;
+                }
+                break;
+            }
             // 根據標頭檔案輪詢資源檔案
             for (EXDFPage exdfPage : exhSE.getPages())
             {
@@ -107,51 +171,16 @@ public class CSVExport
                 }
                 // 解壓文本檔案並提取內容
                 EXDFFile ja_exd = new EXDFFile(exdFileJA);
-                HashMap<Integer, byte[]> jaExdList = ja_exd.getEntrys();
-
-                //先輸出一次title
+                TreeMap<Integer, byte[]> jaExdList = new TreeMap<Integer, byte[]>();
+                jaExdList.putAll(ja_exd.getEntrys());
                 for (Map.Entry<Integer, byte[]> listEntry : jaExdList.entrySet())
                 {
-                    EXDFEntry exdfEntryJA = new EXDFEntry(listEntry.getValue(), exhSE.getDatasetChunkSize());
-                    LERandomBytes chunk = new LERandomBytes(new byte[(exdfEntryJA.getChunk()).length], true, false);
-                    chunk.write(exdfEntryJA.getChunk());
-
-                    int index = 0;
-                    StringBuilder sbKey = new StringBuilder();
-                    StringBuilder sbOffset = new StringBuilder();
-                    StringBuilder sbType = new StringBuilder();
-
-                    sbKey.append("key,");
-                    sbOffset.append("offset,");
-                    for (EXDFDataset exdfDatasetSE : exhSE.getDatasets())
-                    {
-                        sbKey.append(String.valueOf(index++)).append(",");
-                        sbOffset.append(exdfDatasetSE.offset).append(",");
-                        sbType.append(exdfDatasetSE.type).append(",");
-                    }
-
-                    if (sbKey.length() > 0)
-                        sbKey.deleteCharAt(sbKey.length() - 1);
-                    if (sbOffset.length() > 0)
-                        sbOffset.deleteCharAt(sbOffset.length() - 1);
-                    if (sbType.length() > 0)
-                        sbType.deleteCharAt(sbType.length() - 1);
-                    bwCSV.write(sbKey.toString());
-                    bwCSV.newLine();
-                    bwCSV.write(sbType.toString());
-                    bwCSV.newLine();
-                    bwCSV.write(sbOffset.toString());
-                    bwCSV.newLine();
-                    break;
-                }
-                int index = 0;
-                for (Map.Entry<Integer, byte[]> listEntry : jaExdList.entrySet())
-                {
+                    Integer key = listEntry.getKey();
                     EXDFEntry exdfEntryJA = new EXDFEntry(listEntry.getValue(), exhSE.getDatasetChunkSize());
                     LERandomBytes chunk = new LERandomBytes(new byte[(exdfEntryJA.getChunk()).length], true, false);
                     chunk.write(exdfEntryJA.getChunk());
                     StringBuilder sbContent = new StringBuilder();
-                    sbContent.append(String.valueOf(index++)).append(",");
+                    sbContent.append(String.valueOf(key.intValue())).append(",");
                     for (EXDFDataset exdfDatasetSE : exhSE.getDatasets())
                     {
                         if (exdfDatasetSE.type == 0)
@@ -172,10 +201,15 @@ public class CSVExport
                             byte jaByte = exdfEntryJA.getByte(exdfDatasetSE.offset);
                             int t = jaByte & 0xFF;
                             sbContent.append(t).append(",");
-                        } else if (exdfDatasetSE.type == 4 || exdfDatasetSE.type == 5)
+                        } else if (exdfDatasetSE.type == 4)
                         {
                             short jaShort = exdfEntryJA.getShort(exdfDatasetSE.offset);
                             sbContent.append(jaShort).append(",");
+                        } else if (exdfDatasetSE.type == 5) //Quest
+                        {
+                            short jaShort = exdfEntryJA.getShort(exdfDatasetSE.offset);
+                            int t = jaShort & 0xFFFF;
+                            sbContent.append(t).append(",");
                         } else if (exdfDatasetSE.type == 7 || exdfDatasetSE.type == 6)
                         {
                             int jaInt = exdfEntryJA.getInt(exdfDatasetSE.offset);
