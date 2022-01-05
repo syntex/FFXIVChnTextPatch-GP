@@ -26,6 +26,7 @@ import name.yumao.ffxiv.chn.model.SqPackIndexFile;
 import name.yumao.ffxiv.chn.model.SqPackIndexFolder;
 import name.yumao.ffxiv.chn.util.FFCRC;
 import name.yumao.ffxiv.chn.util.FFXIVString;
+import name.yumao.ffxiv.chn.util.HexUtils;
 import name.yumao.ffxiv.chn.util.LERandomAccessFile;
 import name.yumao.ffxiv.chn.util.LERandomBytes;
 
@@ -59,8 +60,8 @@ public class CSVExport
 
             String filePatch = replaceFile.substring(0, replaceFile.lastIndexOf("/"));
             String fileName = replaceFile.substring(replaceFile.lastIndexOf("/") + 1);
-            if (!"quest.exh".equals(fileName.toLowerCase()))
-                continue;
+//            if (!"item.exh".equals(fileName.toLowerCase()))
+//                continue;
             // 計算檔案目錄CRC
             Integer filePatchCRC = Integer.valueOf(FFCRC.ComputeCRC(filePatch.toLowerCase().getBytes()));
             // 計算 EXH CRC
@@ -218,10 +219,10 @@ public class CSVExport
                         {
                             float jaFloat = exdfEntryJA.getFloat(exdfDatasetSE.offset);
                             sbContent.append(String.valueOf(jaFloat)).append(",");
-                        } else if (exdfDatasetSE.type == 11)
+                        } else if (exdfDatasetSE.type == 11)//item
                         {
                             int[] q = exdfEntryJA.getQuad(exdfDatasetSE.offset);
-                            sbContent.append(q[0]).append(",").append(q[1]).append(",").append(q[2]).append(",").append(q[3]).append(",");
+                            sbContent.append("\"").append(q[3]).append(", ").append(q[2]).append(", ").append(q[1]).append(", ").append(q[0]).append("\",");
                         } else if (exdfDatasetSE.type >= 25 && exdfDatasetSE.type <= 32)
                         {
                             byte jaByte = exdfEntryJA.getByte(exdfDatasetSE.offset);
