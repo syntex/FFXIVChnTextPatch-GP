@@ -4,7 +4,11 @@
 /jre/
 /resource/text/
 /src_test/
+/resource/font-4k/
 /resource/rawexd-zhcn/
 .classpath
 .project
 .gradle
+debug.*
+*.jar
+
