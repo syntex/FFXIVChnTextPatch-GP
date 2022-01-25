@@ -109,10 +109,8 @@ public class ReplaceEXDF {
 			String patternStr = this.slang.equals("EN") ? "teemopattern" : "^[a-zA-Z0-9_'./\\s]*$";
 			pattern = Pattern.compile(patternStr);
 		}
-		System.out.println("[ReplaceEXDF] Initializing File List...");
 		log.info("[ReplaceEXDF] Initializing File List...");
 		initFileList();
-		System.out.println("[ReplaceEXDF] Loading Index File...");
 		log.info("[ReplaceEXDF] Loading Index File...");
 		HashMap<Integer, SqPackIndexFolder> indexSE = (new SqPackIndex(this.pathToIndexSE)).resloveIndex();
 		HashMap<Integer, SqPackIndexFolder> indexCN = null;
@@ -122,7 +120,6 @@ public class ReplaceEXDF {
 		} else {
 			log.info("[ReplaceEXDF] Skipped IndexCN");
 		}
-		System.out.println("[ReplaceEXDF] Loading Index Complete");
 		log.info("[ReplaceEXDF] Loading Index Complete");
 		LERandomAccessFile leIndexFile = new LERandomAccessFile(this.pathToIndexSE, "rw");
 		LERandomAccessFile leDatFile = new LERandomAccessFile(this.pathToIndexSE.replace("index", "dat0"), "rw");
@@ -152,7 +149,8 @@ public class ReplaceEXDF {
 				percentPanel.percentShow((double)(++fileCount) / (double)fileList.size());
 			if (replaceFile.toUpperCase().endsWith(".EXH")) {
 				System.out.println("[ReplaceEXDF] Now File : " + replaceFile);
-				percentPanel.progressShow("正在替換文本：", replaceFile);
+				if(percentPanel!=null)
+					percentPanel.progressShow("正在替換文本：", replaceFile);
 				log.info("[ReplaceEXDF] Now File : " + replaceFile);
 				// 準備好檔案目錄名和檔案名
 				String filePatch = replaceFile.substring(0, replaceFile.lastIndexOf("/"));
@@ -221,7 +219,6 @@ public class ReplaceEXDF {
 								continue;
 							}
 						} catch (Exception csvFileIndexValueException) {
-							System.out.println("\t\tCSV Exception. " + csvFileIndexValueException.getMessage());
 							log.warning("CSV Exception. " + csvFileIndexValueException.getMessage());
 							continue;
 						}
