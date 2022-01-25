@@ -61,6 +61,17 @@ public class ReplaceEXDF {
 	private boolean csv;
 	
 	private NPCNameMapping npcMapping=new NPCNameMapping();
+	public ReplaceEXDF(String pathToIndexSE, String pathToIndexCN,String slang,String dlang)
+	{
+		this.pathToIndexSE = pathToIndexSE;
+		this.pathToIndexCN = pathToIndexCN;
+		this.fileList = new ArrayList<>();
+		this.exQuestMap = (HashMap)new HashMap<>();
+		this.transMap = new HashMap<>();
+		this.slang = slang;
+		this.dlang = dlang;
+	    this.csv = true;
+	}
 	
 	public ReplaceEXDF(String pathToIndexSE, String pathToIndexCN,/* List<TeemoUpdateVo> updates,*/ PercentPanel percentPanel) {
 		// 這兩個檔案會是0a0000.win32.index
@@ -133,7 +144,8 @@ public class ReplaceEXDF {
 		for (String replaceFile : this.fileList) {
 			// edited
 			// this.percentPanel.percentShow(++fileCount / this.fileList.size());
-			percentPanel.percentShow((double)(++fileCount) / (double)fileList.size());
+			if(percentPanel!=null)
+				percentPanel.percentShow((double)(++fileCount) / (double)fileList.size());
 			if (replaceFile.toUpperCase().endsWith(".EXH")) {
 				System.out.println("[ReplaceEXDF] Now File : " + replaceFile);
 				// 準備好檔案目錄名和檔案名
