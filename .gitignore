@@ -1,6 +1,7 @@
 /.settings/
 /backup/
 /bin/
+/docs/scripts/*
 /jre/
 /resource/text/
 /src_test/
