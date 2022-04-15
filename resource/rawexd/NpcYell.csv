@@ -3,7 +3,7 @@
 offset,8,15,15,15,12,4,15,15,13,14,0
 int32,uint32,bit&01,bit&02,bit&04,byte,single,bit&08,bit&10,byte,byte,str
 0,0,False,False,False,1,1,False,False,1,25,"0"
-1,0,False,False,False,3,1,False,False,1,25,""
+1,0,False,False,False,3,1,False,False,1,25,"NpcYellテストテキスト[1]"
 2,0,False,False,False,3,5,False,False,1,25,"快！誰來幫個忙！"
 3,0,False,False,False,3,5,False,False,1,25,"小心！魔物過來了！"
 4,0,False,False,False,3,5,False,False,1,25,"小魔精要出來了！不要放跑它們！"
@@ -2501,7 +2501,7 @@ int32,uint32,bit&01,bit&02,bit&04,byte,single,bit&08,bit&10,byte,byte,str
 2496,0,False,False,False,2,3,False,False,1,25,"起始於「序」！"
 2497,0,False,False,False,2,3,False,False,1,25,"經流至「破」！"
 2498,0,False,False,False,2,3,False,False,1,25,"界臨至「急」！"
-2499,1011060,False,False,True,5,1,False,False,5,25,<hex:02100103>來試著進行對局吧！"
+2499,1011060,False,False,True,5,1,False,False,5,25,"<hex:02100103>來試著進行對局吧！"
 2500,0,False,False,False,2,3,True,False,1,25,"消滅入侵者！"
 2501,0,False,False,False,2,3,True,False,1,25,"戰神與我們同在！"
 2502,0,False,False,False,2,3,True,False,1,25,"保護教皇陛下！"
@@ -9634,7 +9634,7 @@ int32,uint32,bit&01,bit&02,bit&04,byte,single,bit&08,bit&10,byte,byte,str
 9629,9357,False,False,False,3,5,False,False,1,25,"有一種叫幻光碟麗魚<hex:02100103>的中型魚！"
 9630,0,False,False,False,0,0,False,False,0,0,""
 9631,0,False,False,False,0,0,False,False,0,0,""
-9632,9357,False,False,False,3,5,False,False,1,25,<hex:02100103>為什麼會出現在這裡？"
+9632,9357,False,False,False,3,5,False,False,1,25,"<hex:02100103>為什麼會出現在這裡？"
 9633,9357,False,False,False,3,5,False,False,1,25,"據說夕陽時在這個海域<hex:02100103>會出現神秘的魚……"
 9634,9357,False,False,False,3,5,False,False,1,25,"這個溫度……<hex:02100103>那傢伙要開始活躍了。"
 9635,9357,False,False,False,3,5,False,False,1,25,"這個海域有體型巨大、<hex:02100103>行動緩慢的珍稀魚類！"
