@@ -88,7 +88,7 @@ int32,str,NotebookDivisionCategory,byte,byte,Quest,byte,bit&01,bool,bool,bool,bo
 1042,"魔法大學交易",4,80,255,69682,7,False,False,False,False,False,False,False,True,True
 1043,"內外裝潢",2,12,255,0,1,False,True,True,True,True,True,True,True,False
 1044,"庭具",2,12,255,0,2,False,True,True,True,True,True,True,True,True
-1045,"傢具",2,12,255,0,3,False,True,True,True,True,True,True,True,True
+1045,"家具",2,12,255,0,3,False,True,True,True,True,True,True,True,True
 1046,"桌台&地毯",2,12,255,0,4,False,True,True,True,True,True,True,True,False
 1047,"桌上",2,12,255,0,5,False,True,True,True,True,True,True,True,True
 1048,"壁掛",2,12,255,0,6,False,True,True,True,True,True,True,True,False

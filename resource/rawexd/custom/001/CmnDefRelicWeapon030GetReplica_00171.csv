@@ -20,7 +20,7 @@ int32,str,str
 15,"TEXT_CMNDEFRELICWEAPON030GETREPLICA_00171_SYSTEM_000_050","獲得了«天球書卷»。<hex:02100103>可以打開「物品」，<hex:02100103>通過使用「<hex:02280AFF05>Item<hex:E8020103>」來嵌寫魔晶石。"
 16,"TEXT_CMNDEFRELICWEAPON030GETREPLICA_00171_SYSTEM_000_051","在對«天球書卷»進行了充分的嵌寫後，<hex:02100103>就可以將其和「上古武器」一併交給林場水車的加爾贊。"
 17,"TEXT_CMNDEFRELICWEAPON030GETREPLICA_00171_HUBAIRTIN_000_080","哎呀，你身上的高位附魔墨水不夠。<hex:02100103>很遺憾，如果不用那種特殊的墨水就沒法描繪特殊的魔紋……<hex:02100103>這樣就不能繪製«天球書卷»了。"
-18,"TEXT_CMNDEFRELICWEAPON030GETREPLICA_00171_SYSTEM_000_090","每種武器都需要3個高位附魔墨水。<hex:02100103>其中，「騎士」的「劍」需要2個，「盾」需要1個。<hex:02100103>墨水可以在喪靈鐘跟奧里亚娜換取。"
+18,"TEXT_CMNDEFRELICWEAPON030GETREPLICA_00171_SYSTEM_000_090","每種武器都需要3個高位附魔墨水。<hex:02100103>其中，「騎士」的「劍」需要2個，「盾」需要1個。<hex:02100103>墨水可以在喪靈鐘跟奧里亞娜換取。"
 19,"TEXT_CMNDEFRELICWEAPON030GETREPLICA_00171_HUBAIRTIN_000_100","看樣子你沒帶著那把武器啊。<hex:02100103>……真是抱歉，如果不讓我看一下上古武器的話，<hex:02100103>就沒辦法描繪與其相符的魔紋了。"
 20,"TEXT_CMNDEFRELICWEAPON030GETREPLICA_00171_SYSTEM_000_110","必須在持有或裝備「上古武器·魂靈」的狀態下<hex:02100103>和於貝爾坦對話才能獲得«天球書卷»。"
 21,"TEXT_CMNDEFRELICWEAPON030GETREPLICA_00171_SYSTEM_000_111","如已對「上古武器·魂靈」進行強化，<hex:02100103>則也可通過「上古武器·新星」或更高級的上古武器<hex:02100103>來獲取«天球書卷»。"

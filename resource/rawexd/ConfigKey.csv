@@ -175,7 +175,7 @@ int32,str,byte,byte,bit&01,byte,uint16,byte,str
 262,"MENU_PARTY_MEMBER",255,255,False,3,21,0,"小隊"
 263,"MENU_FRIEND_LIST",255,255,False,3,23,0,"好友名單"
 264,"MENU_BLACK_LIST",255,255,False,3,25,0,"黑名單"
-265,"MENU_PC_SEARCH",255,255,False,3,27,0,"玩家搜尋"
+265,"MENU_PC_SEARCH",255,255,False,3,27,0,"玩家搜索"
 266,"MENU_LFG",255,255,False,3,29,0,"隊員招募"
 267,"MENU_READY_CHECK",255,255,False,3,30,0,"準備確認"
 268,"MENU_FREECOM",255,255,False,3,33,0,"部隊"
