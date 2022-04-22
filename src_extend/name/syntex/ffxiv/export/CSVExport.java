@@ -26,7 +26,6 @@ import name.yumao.ffxiv.chn.model.SqPackIndexFile;
 import name.yumao.ffxiv.chn.model.SqPackIndexFolder;
 import name.yumao.ffxiv.chn.util.FFCRC;
 import name.yumao.ffxiv.chn.util.FFXIVString;
-import name.yumao.ffxiv.chn.util.HexUtils;
 import name.yumao.ffxiv.chn.util.LERandomAccessFile;
 import name.yumao.ffxiv.chn.util.LERandomBytes;
 
@@ -44,8 +43,10 @@ public class CSVExport
         File f = new File(DestinationPath + "\\" + slang);
         if (!f.exists())
             f.mkdirs();
-        List<String> fileList = initFileList(pathToIndexSE);
-        HashMap<Integer, SqPackIndexFolder> indexSE = (new SqPackIndex(pathToIndexSE)).resloveIndex();
+        
+        HashMap<Integer, SqPackIndexFolder> indexSE = (new SqPackIndex(pathToIndexSE)).resloveIndex();        
+        List<String> fileList = initFileList(pathToIndexSE,indexSE);
+      
 
         LERandomAccessFile leDatFile = new LERandomAccessFile(pathToIndexSE.replace("index", "dat0"), "r");
         long datLength = leDatFile.length();
@@ -60,8 +61,8 @@ public class CSVExport
 
             String filePatch = replaceFile.substring(0, replaceFile.lastIndexOf("/"));
             String fileName = replaceFile.substring(replaceFile.lastIndexOf("/") + 1);
-//            if (!"item.exh".equals(fileName.toLowerCase()))
-//                continue;
+            //            if (!"item.exh".equals(fileName.toLowerCase()))
+            //                continue;
             // 計算檔案目錄CRC
             Integer filePatchCRC = Integer.valueOf(FFCRC.ComputeCRC(filePatch.toLowerCase().getBytes()));
             // 計算 EXH CRC
@@ -86,69 +87,8 @@ public class CSVExport
             if ((exhSE.getLangs()).length <= 0)
                 continue;
             //先輸出一次title
-            for (EXDFPage exdfPage : exhSE.getPages())
-            {
-                Integer exdFileCRCJA = Integer.valueOf(FFCRC.ComputeCRC(fileName.replace(".EXH", "_" + String.valueOf(exdfPage.pageNum) + "_" + slang + ".EXD").toLowerCase().getBytes()));
-                // 提取對應的文本檔案
-                SqPackIndexFile exdIndexFileJA = (SqPackIndexFile) ((SqPackIndexFolder) indexSE.get(filePatchCRC)).getFiles().get(exdFileCRCJA);
-                byte[] exdFileJA = null;
-                try
-                {
-                    exdFileJA = extractFile(pathToIndexSE, exdIndexFileJA.getOffset());
-                } catch (Exception jaEXDFileException)
-                {
-                    continue;
-                }
-                // added 檢查日文檔案是否損毀
-                if (exdFileJA == null)
-                {
-                    System.out.println("      [ERROR] exdFileJA null detected!");
-                    System.out.println("      [ERROR] exdIndexFileJA.getOffset(): " + String.valueOf(exdIndexFileJA.getOffset()));
-                    continue;
-                }
-                // 解壓文本檔案並提取內容
-                EXDFFile ja_exd = new EXDFFile(exdFileJA);
-                TreeMap<Integer, byte[]> jaExdList = new TreeMap<Integer, byte[]>();
-                jaExdList.putAll(ja_exd.getEntrys());
-                for (Map.Entry<Integer, byte[]> listEntry : jaExdList.entrySet())
-                {
-                    EXDFEntry exdfEntryJA = new EXDFEntry(listEntry.getValue(), exhSE.getDatasetChunkSize());
-                    LERandomBytes chunk = new LERandomBytes(new byte[(exdfEntryJA.getChunk()).length], true, false);
-                    chunk.write(exdfEntryJA.getChunk());
+            outputTitle(exhSE, bwCSV);
 
-                    int index = 0;
-                    StringBuilder sbKey = new StringBuilder();
-                    StringBuilder sbOffset = new StringBuilder();
-                    StringBuilder sbType = new StringBuilder();
-
-                    sbKey.append("key,");
-                    sbType.append("#,");
-                    sbOffset.append("offset,");
-                    for (EXDFDataset exdfDatasetSE : exhSE.getDatasets())
-                    {
-                        sbKey.append(String.valueOf(index++)).append(",");
-                        sbOffset.append(exdfDatasetSE.offset).append(",");
-                        sbType.append(exdfDatasetSE.type).append(",");
-                    }
-
-                    if (sbKey.length() > 0)
-                        sbKey.deleteCharAt(sbKey.length() - 1);
-                    if (sbOffset.length() > 0)
-                        sbOffset.deleteCharAt(sbOffset.length() - 1);
-                    if (sbType.length() > 0)
-                        sbType.deleteCharAt(sbType.length() - 1);
-                    bwCSV.write(sbKey.toString());
-                    bwCSV.newLine();
-                    bwCSV.write(sbType.toString());
-                    bwCSV.newLine();
-                    bwCSV.write(sbOffset.toString());
-                    bwCSV.newLine();
-                    bwCSV.write(sbType.toString());
-                    bwCSV.newLine();
-                    break;
-                }
-                break;
-            }
             // 根據標頭檔案輪詢資源檔案
             for (EXDFPage exdfPage : exhSE.getPages())
             {
@@ -242,15 +182,49 @@ public class CSVExport
                 }
             }
             bwCSV.flush();
-            bwCSV.close();
+            bwCSV.close();         
+            break;
         }
     }
 
-    private List<String> initFileList(String pathToIndexSE) throws Exception
+    private void outputTitle(EXHFFile exhSE, BufferedWriter bwCSV) throws IOException
+    {
+
+        int index = 0;
+        StringBuilder sbKey = new StringBuilder();
+        StringBuilder sbOffset = new StringBuilder();
+        StringBuilder sbType = new StringBuilder();
+
+        sbKey.append("key,");
+        sbType.append("#,");
+        sbOffset.append("offset,");
+        for (EXDFDataset exdfDatasetSE : exhSE.getDatasets())
+        {
+            sbKey.append(String.valueOf(index++)).append(",");
+            sbOffset.append(exdfDatasetSE.offset).append(",");
+            sbType.append(exdfDatasetSE.type).append(",");
+        }
+
+        if (sbKey.length() > 0)
+            sbKey.deleteCharAt(sbKey.length() - 1);
+        if (sbOffset.length() > 0)
+            sbOffset.deleteCharAt(sbOffset.length() - 1);
+        if (sbType.length() > 0)
+            sbType.deleteCharAt(sbType.length() - 1);
+        bwCSV.write(sbKey.toString());
+        bwCSV.newLine();
+        bwCSV.write(sbType.toString());
+        bwCSV.newLine();
+        bwCSV.write(sbOffset.toString());
+        bwCSV.newLine();
+        bwCSV.write(sbType.toString());
+        bwCSV.newLine();
+
+    }
+
+    private List<String> initFileList(String pathToIndexSE,    HashMap<Integer, SqPackIndexFolder> indexSE ) throws Exception
     {
         List<String> fileList = new ArrayList<>();
-
-        HashMap<Integer, SqPackIndexFolder> indexSE = (new SqPackIndex(pathToIndexSE)).resloveIndex();
         Integer filePathCRC = Integer.valueOf(FFCRC.ComputeCRC("exd".toLowerCase().getBytes()));
         Integer rootFileCRC = Integer.valueOf(FFCRC.ComputeCRC("root.exl".toLowerCase().getBytes()));
         SqPackIndexFile rootIndexFileSE = (SqPackIndexFile) ((SqPackIndexFolder) indexSE.get(filePathCRC)).getFiles().get(rootFileCRC);
