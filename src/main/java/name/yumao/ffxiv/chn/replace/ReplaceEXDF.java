@@ -109,8 +109,10 @@ public class ReplaceEXDF {
 			String patternStr = this.slang.equals("EN") ? "teemopattern" : "^[a-zA-Z0-9_'./\\s]*$";
 			pattern = Pattern.compile(patternStr);
 		}
+		System.out.println("[ReplaceEXDF] Initializing File List...");
 		log.info("[ReplaceEXDF] Initializing File List...");
 		initFileList();
+		System.out.println("[ReplaceEXDF] Loading Index File...");
 		log.info("[ReplaceEXDF] Loading Index File...");
 		HashMap<Integer, SqPackIndexFolder> indexSE = (new SqPackIndex(this.pathToIndexSE)).resloveIndex();
 		HashMap<Integer, SqPackIndexFolder> indexCN = null;
@@ -120,6 +122,7 @@ public class ReplaceEXDF {
 		} else {
 			log.info("[ReplaceEXDF] Skipped IndexCN");
 		}
+		System.out.println("[ReplaceEXDF] Loading Index Complete");
 		log.info("[ReplaceEXDF] Loading Index Complete");
 		LERandomAccessFile leIndexFile = new LERandomAccessFile(this.pathToIndexSE, "rw");
 		LERandomAccessFile leDatFile = new LERandomAccessFile(this.pathToIndexSE.replace("index", "dat0"), "rw");
@@ -219,6 +222,7 @@ public class ReplaceEXDF {
 								continue;
 							}
 						} catch (Exception csvFileIndexValueException) {
+							System.out.println("\t\tCSV Exception. " + csvFileIndexValueException.getMessage());
 							log.warning("CSV Exception. " + csvFileIndexValueException.getMessage());
 							continue;
 						}

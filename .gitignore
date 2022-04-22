@@ -3,13 +3,16 @@
 /bin/
 /docs/scripts/*
 /jre/
-/resource/text/
 /src_test/
+/jre-old/
 /resource/font-4k/
+/resource/font-custom/
 /resource/rawexd-zhcn/
+/resource/text/
+debug.*
+notes.txt
+*.jar
 .classpath
 .project
 .gradle
-debug.*
-*.jar
 
