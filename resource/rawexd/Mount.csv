@@ -281,7 +281,7 @@ int32,str,sbyte,str,sbyte,sbyte,sbyte,sbyte,sbyte,ModelChara,uint16,MountFlyingC
 276,"",0,"",0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,"","","",0,0,False,False,0,0,0,0,0,0,0,0,0,0,0,0,0,False,False,False,False,False,0,0,False,False
 277,"",0,"",0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,"","","",0,0,False,False,0,0,0,0,0,0,0,0,0,0,0,0,0,False,False,False,False,False,0,0,False,False
 278,"",0,"",0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,"","","",0,0,False,False,0,0,0,0,0,0,0,0,0,0,0,0,0,False,False,False,False,False,0,0,False,False
-279,"",0,"",0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,"","","",0,0,False,False,0,0,0,0,0,0,0,0,0,0,0,0,0,False,False,False,False,False,0,0,False,False
+279,"機巧蓮座",0,"",0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,"","","",0,0,False,False,0,0,0,0,0,0,0,0,0,0,0,0,0,False,False,False,False,False,0,0,False,False
 280,"",0,"",0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,"","","",0,0,False,False,0,0,0,0,0,0,0,0,0,0,0,0,0,False,False,False,False,False,0,0,False,False
 281,"",0,"",0,0,1,0,0,3474,2,1,45,70,70,1,2,111,895,"SE_Bt_Etc_Mount_Peryton_call","SE_Bt_Etc_GuuBooWhistle_only","SE_Bt_Etc_Mount_Peryton_bye",20,10,False,True,0,0,0,0,218,4226,91,100,0,0,60,0,0,False,False,False,False,False,80,80,False,False
 282,"",0,"",0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,"","","",0,0,False,False,0,0,0,0,0,0,0,0,0,0,0,0,0,False,False,False,False,False,0,0,False,False

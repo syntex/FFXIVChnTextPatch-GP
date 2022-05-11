@@ -102,7 +102,7 @@ int32,str,sbyte,str,sbyte,sbyte,sbyte,sbyte,sbyte,ModelChara,byte,byte,byte,byte
 97,"食果花鼠",0,"",0,0,1,0,0,755,100,10,0,0,30,2,1,8,59,True,False,True,False,True,0,False,True,4487,3003,True,0,30,450,36,360,30,1,634,1
 98,"迷你敏菲利亞",0,"",0,0,1,0,0,797,100,10,0,0,0,1,0,8,262,False,True,False,True,False,0,False,True,4488,9002,True,0,20,400,1,30,20,1,604,3
 99,"迷你桑克瑞德",0,"",0,0,1,0,0,796,100,10,0,0,0,1,0,8,262,False,True,False,True,False,0,False,True,4489,9003,True,0,20,450,35,360,30,1,634,3
-100,"自律型魔導浮游炮",0,"",0,0,1,0,0,1016,100,10,0,0,0,2,0,8,0,False,False,False,False,False,0,True,True,4516,11005,True,0,30,455,1,30,20,1,612,2
+100,"自律型魔導浮游砲",0,"",0,0,1,0,0,1016,100,10,0,0,0,2,0,8,0,False,False,False,False,False,0,True,True,4516,11005,True,0,30,455,1,30,20,1,612,2
 101,"暗淡之雲",0,"",0,0,1,0,0,1017,80,10,0,0,0,1,2,8,232,False,True,False,True,False,0,False,True,4517,2101,True,0,30,540,4,30,20,2,612,2
 102,"淘氣南加",0,"",0,0,1,0,0,808,100,30,0,0,0,2,0,8,60,True,False,True,False,False,0,False,True,4490,1041,True,0,15,415,11,360,20,1,617,2
 103,"熊貓寶寶",0,"",0,0,1,0,0,816,100,20,0,0,0,1,0,8,241,False,True,True,False,False,0,False,True,4491,3004,True,0,15,450,35,360,30,1,634,1
@@ -445,7 +445,7 @@ int32,str,sbyte,str,sbyte,sbyte,sbyte,sbyte,sbyte,ModelChara,byte,byte,byte,byte
 440,"諾斯費拉圖",0,"",0,0,1,0,0,3359,100,10,0,0,0,2,0,8,465,True,False,True,False,True,0,False,True,4840,2011,True,0,30,570,41,0,20,1,620,2
 441,"小小守護者",0,"",0,0,1,0,0,3360,100,10,0,0,0,1,0,8,466,False,True,False,True,False,0,False,True,4841,9048,True,0,25,550,19,30,30,1,613,3
 442,"明燈天王之形",0,"",0,0,1,0,0,3361,100,10,5,0,0,1,0,8,467,False,True,False,True,False,0,False,True,4842,1098,True,0,20,430,11,360,20,1,617,2
-443,"",0,"",0,0,1,0,0,3481,100,10,0,0,0,2,0,8,458,True,False,True,False,False,0,False,True,4843,1095,True,0,25,540,42,0,20,1,620,2
+443,"王家仙人刺",0,"",0,0,1,0,0,3481,100,10,0,0,0,2,0,8,458,True,False,True,False,False,0,False,True,4843,1095,True,0,25,540,42,0,20,1,620,2
 444,"",0,"",0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,False,False,False,False,False,0,False,False,0,0,False,0,0,0,0,0,0,0,0,0
 445,"",0,"",0,0,1,0,0,3556,100,10,0,0,0,1,0,8,469,False,True,False,True,False,0,False,True,4845,3031,False,0,15,320,6,360,30,1,600,3
 446,"",0,"",0,0,1,0,0,3557,100,10,0,0,0,1,0,8,470,False,True,False,True,False,0,False,True,4846,11026,False,0,10,370,10,0,20,1,620,2
