@@ -8,6 +8,7 @@ public class NPCNameMapping {
     public NPCNameMapping() {
         npcNameMap.put("可露兒", "可露露");
         npcNameMap.put("皮平", "皮皮");
+        npcNameMap.put("生命威", "阿娘威");        
     }
 
     public String mapping(String desc) {

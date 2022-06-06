@@ -40,11 +40,11 @@ public class ReplaceEXDF
     private String pathToIndexSE;
     private List<String> fileList;
 
-    private String[] slangs = new String[] { "Ja", "En" };
+    private String[] slangs = new String[] { "Ja"};
 
     private NPCNameMapping npcMapping = new NPCNameMapping();
 
-    public ReplaceEXDF(String pathToIndexSE, String pathToIndexCN)
+    public ReplaceEXDF(String pathToIndexSE)
     {
         // 這兩個檔案會是0a0000.win32.index
         this.pathToIndexSE = pathToIndexSE;
@@ -169,8 +169,8 @@ public class ReplaceEXDF
                                 if (rowStrings != null)
                                 {
                                     String readString = npcMapping.mapping(rowStrings[offsetInteger]);
-                                    newFFXIVString = transHexString(readString);
-                                    if (newFFXIVString == null)
+                                    byte ret[] = transHexString(readString);
+                                    if (ret == null)
                                         newFFXIVString = ArrayUtil.append(newFFXIVString, jaBytes);
                                 } else
                                 {
